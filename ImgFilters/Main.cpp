@@ -4,7 +4,9 @@
 
 
 
-void ApplyWaveFileter(cv::VideoCapture p_camera);
+void ApplyWaveFilter(cv::VideoCapture p_camera);
+void ApplyColorSwapEffect(cv::VideoCapture p_camera);
+void ApplyToColor16Effect(cv::VideoCapture p_camera);
 
 int main()
 {
@@ -16,11 +18,13 @@ int main()
 		return -1;
 	}
 	 
-	ApplyWaveFileter(camera);
+	//ApplyWaveFilter(camera);
+	//ApplyColorSwapEffect(camera);
+	ApplyToColor16Effect(camera);
 	
 }
 
-void ApplyWaveFileter(cv::VideoCapture p_camera)
+void ApplyWaveFilter(cv::VideoCapture p_camera)
 {
 	cv::Mat frame, output;
 
@@ -34,11 +38,46 @@ void ApplyWaveFileter(cv::VideoCapture p_camera)
 		while (true)
 		{
 			p_camera >> frame;
-			//	cv::imshow("webCam", frame);
 			ImageFilters::WaveFilter(&frame, &output,yMultiplyer,xMultiplyer);
-			cv::imshow("filteredImg", output);
+			cv::imshow("Wave Effect", output);
 
 			if (cv::waitKey(10) >= 0)
 				break;
 		}
+}
+
+void ApplyColorSwapEffect(cv::VideoCapture p_camera)
+{
+	cv::Mat frame;
+
+
+
+	while (true)
+	{
+		p_camera >> frame;
+		ImageFilters::ColorSwap(&frame);
+		cv::imshow("Color Effect", frame);
+
+		if (cv::waitKey(10) >= 0)
+			break;
+	}
+}
+
+
+void ApplyToColor16Effect(cv::VideoCapture p_camera)
+{
+	cv::Mat frame;
+
+
+	while (true)
+	{
+		p_camera >> frame;
+		ImageFilters::ToColor16(&frame);
+
+		cv::imshow("To Color 16 ", frame);
+
+
+		if (cv::waitKey(10) >= 0)
+			break;
+	}
 }
