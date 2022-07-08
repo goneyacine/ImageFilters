@@ -64,6 +64,7 @@ void ImageFilters::ToColor16(cv::Mat* p_input)
 		{
 			color = &p_input->at<cv::Vec3b>(y, x);
 
+
 			(*color)[0] = (uchar)((float)(*color)[0] / (float)0xFF * (float) 0xF);
 			(*color)[0] = (uchar)((float)(*color)[0] / (float)0xF * (float)0xFF);
 
@@ -75,8 +76,9 @@ void ImageFilters::ToColor16(cv::Mat* p_input)
 
 		}
 	}
-
+	
 }
+
 
 
 

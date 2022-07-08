@@ -21,7 +21,6 @@ int main()
 	//ApplyWaveFilter(camera);
 	//ApplyColorSwapEffect(camera);
 	ApplyToColor16Effect(camera);
-	
 }
 
 void ApplyWaveFilter(cv::VideoCapture p_camera)
@@ -81,3 +80,4 @@ void ApplyToColor16Effect(cv::VideoCapture p_camera)
 			break;
 	}
 }
+
